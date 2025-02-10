@@ -4,7 +4,8 @@
   "description": "Secure API for expiring document access with SafeLink detection",
   "main": "api/get_doc_url.js",
   "scripts": {
-    "start": "node api/get_doc_url.js"
+    "start": "node api/get_doc_url.js",
+    "build": "echo 'No build step required for this project'"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
