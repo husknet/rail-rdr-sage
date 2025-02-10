@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "env": {
+    "PORT": "3000",
+    "NEXT_PUBLIC_API_URL": "/api"
+  },
+  "build": {
+    "env": {
+      "PORT": "3000",
+      "NEXT_PUBLIC_API_URL": "/api"
+    }
+  }
+}
