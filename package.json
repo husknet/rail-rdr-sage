@@ -1,19 +1,14 @@
 {
   "name": "safelink-bypass",
   "version": "1.0.0",
-  "description": "Secure API",
-  "main": "server.js",
+  "description": "Secure API for expiring document access with SafeLink detection",
+  "main": "api/get_doc_url.js",
   "scripts": {
-    "dev": "vercel dev",
-    "start": "vercel start",
-    "deploy": "vercel deploy"
+    "start": "node api/get_doc_url.js"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
     "crypto": "^1.0.1"
-  },
-  "devDependencies": {
-    "vercel": "^31.1.0"
   },
   "engines": {
     "node": ">=14.0.0"
