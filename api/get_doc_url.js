@@ -7,9 +7,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+// ✅ Enable CORS for Azure Edge
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://azurerdr.z19.web.core.windows.net"); // Allow only Azure Edge
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    
+    next();
+});
 
-// Generate Expiring Secure Redirect
+// ✅ API to generate expiring redirect URL
 app.post("/api/get_doc_url", (req, res) => {
     const SECURE_TOKEN = process.env.SECURE_TOKEN;
     const SECRET_KEY = process.env.SECRET_KEY;
@@ -26,7 +37,7 @@ app.post("/api/get_doc_url", (req, res) => {
     res.status(200).json({ secure_url: secureRedirectURL });
 });
 
-// Secure Redirect Handling
+// ✅ Secure Redirect API
 app.get("/api/redirect", (req, res) => {
     const SECRET_KEY = process.env.SECRET_KEY;
     const expires = req.query.expires;
@@ -43,11 +54,10 @@ app.get("/api/redirect", (req, res) => {
     }
 
     const documentUrl = "https://your-secure-doc-url.com/document.pdf";
-
     res.redirect(documentUrl);
 });
 
-// Start the server
+// ✅ Start Express Server
 app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
 });
