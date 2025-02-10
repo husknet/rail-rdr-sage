@@ -1,7 +1,9 @@
-const crypto = require("crypto");
-require("dotenv").config();
+import crypto from "crypto";
+import dotenv from "dotenv";
 
-module.exports = function handler(req, res) {
+dotenv.config(); // Load environment variables
+
+export default function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET");
 
@@ -23,4 +25,4 @@ module.exports = function handler(req, res) {
 
     res.writeHead(302, { Location: documentUrl });
     res.end();
-};
+}
