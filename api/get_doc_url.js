@@ -32,29 +32,11 @@ app.post("/api/get_doc_url", (req, res) => {
 
     const expires = Date.now() + 60000; // 60 seconds expiry
     const hash = crypto.createHmac("sha256", SECRET_KEY).update(expires.toString()).digest("hex");
+
+    // ✅ Use external link to `redirect.js`
     const secureRedirectURL = `https://rail-rdr-sage.onrender.com/api/redirect?expires=${expires}&hash=${hash}`;
 
     res.status(200).json({ secure_url: secureRedirectURL });
-});
-
-// ✅ Secure Redirect API
-app.get("/api/redirect", (req, res) => {
-    const SECRET_KEY = process.env.SECRET_KEY;
-    const expires = req.query.expires;
-    const receivedHash = req.query.hash;
-
-    if (!expires || !receivedHash) {
-        return res.status(403).json({ error: "Invalid or missing parameters" });
-    }
-
-    const expectedHash = crypto.createHmac("sha256", SECRET_KEY).update(expires.toString()).digest("hex");
-
-    if (receivedHash !== expectedHash || Date.now() > parseInt(expires)) {
-        return res.status(403).json({ error: "Link expired or tampered" });
-    }
-
-    const documentUrl = "https://your-secure-doc-url.com/document.pdf";
-    res.redirect(documentUrl);
 });
 
 // ✅ Start Express Server
