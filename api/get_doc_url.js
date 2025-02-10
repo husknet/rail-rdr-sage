@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // ✅ Enable CORS for Azure Edge
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://azurerdr.z19.web.core.windows.net"); // Allow only Azure Edge
+    res.header("Access-Control-Allow-Origin", "https://doxnero.sg-azure.top"); // Allow only Azure Edge
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     
