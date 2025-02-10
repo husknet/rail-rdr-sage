@@ -1,9 +1,7 @@
-import crypto from "crypto";
-import dotenv from "dotenv";
+const crypto = require("crypto");
+require("dotenv").config();
 
-dotenv.config(); // Load secret key
-
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET");
 
@@ -15,17 +13,14 @@ export default function handler(req, res) {
         return res.status(403).json({ error: "Invalid or missing parameters" });
     }
 
-    // Recalculate the HMAC hash
     const expectedHash = crypto.createHmac("sha256", SECRET_KEY).update(expires.toString()).digest("hex");
 
-    // Validate the hash and check expiration time
     if (receivedHash !== expectedHash || Date.now() > parseInt(expires)) {
         return res.status(403).json({ error: "Link expired or tampered" });
     }
 
-    const documentUrl = "https://your-secure-doc-url.com/document.pdf"; // Replace with actual document location
+    const documentUrl = "https://your-secure-doc-url.com/document.pdf";
 
-    // Redirect user to the actual document
     res.writeHead(302, { Location: documentUrl });
     res.end();
-}
+};
