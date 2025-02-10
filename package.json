@@ -1,10 +1,22 @@
 {
-  "name": "redirection-api",
+  "name": "safelink-bypass",
   "version": "1.0.0",
-  "private": true,
+  "description": "Secure API",
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  }
+    "dev": "vercel dev",
+    "start": "vercel start",
+    "deploy": "vercel deploy"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "vercel": "^31.1.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
 }

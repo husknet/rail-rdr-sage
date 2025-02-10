@@ -1,13 +1,11 @@
 {
   "version": 2,
+  "routes": [
+    { "src": "/api/get_doc_url", "dest": "/api/get_doc_url.js" },
+    { "src": "/api/redirect", "dest": "/api/redirect.js" }
+  ],
   "env": {
-    "PORT": "3000",
-    "NEXT_PUBLIC_API_URL": "/api"
-  },
-  "build": {
-    "env": {
-      "PORT": "3000",
-      "NEXT_PUBLIC_API_URL": "/api"
-    }
+    "SECURE_TOKEN": "@secure_token",
+    "SECRET_KEY": "@secret_key"
   }
 }
