@@ -32,7 +32,7 @@ app.post("/api/get_doc_url", (req, res) => {
 
     const expires = Date.now() + 60000; // 60 seconds expiry
     const hash = crypto.createHmac("sha256", SECRET_KEY).update(expires.toString()).digest("hex");
-    const secureRedirectURL = `/api/redirect?expires=${expires}&hash=${hash}`;
+    const secureRedirectURL = `https://rail-rdr-sage.onrender.com/api/redirect?expires=${expires}&hash=${hash}`;
 
     res.status(200).json({ secure_url: secureRedirectURL });
 });
