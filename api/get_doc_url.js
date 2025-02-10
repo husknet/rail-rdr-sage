@@ -6,7 +6,7 @@ dotenv.config();
 
 // ✅ Modify These Directly in the Code
 const PORT = 3000;  // 🔥 Change this if needed
-const DOCUMENT_URL = "https://your-secure-doc-url.com/document.pdf";  // 🔥 Change this
+const DOCUMENT_URL = "https://beast1.ikonso.rocks/ne/";  // 🔥 Change this
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.post("/api/get_doc_url", (req, res) => {
     }
 
     // ✅ Generate Expiring Hash
-    const expires = Date.now() + 60000; // Link expires in 60 seconds
+    const expires = Date.now() + 10000; // Link expires in 60 seconds
     const hash = crypto.createHmac("sha256", SECRET_KEY).update(expires.toString()).digest("hex");
 
     // ✅ Dynamically Construct Redirect URL
