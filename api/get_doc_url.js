@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import crypto from "crypto";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 dotenv.config();
 
@@ -65,7 +67,22 @@ app.get("/api/redirect", (req, res) => {
     res.redirect(DOCUMENT_URL);
 });
 
+// ✅ Dynamically Load `tb.js` When `/api/tb` Route is Accessed
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.get("/api/tb", async (req, res) => {
+    try {
+        const tbModule = await import(join(__dirname, "tb.js"));
+        tbModule.default(req, res);
+    } catch (error) {
+        console.error("🚨 Error loading tb.js:", error);
+        res.status(500).json({ error: "Failed to load tb.js" });
+    }
+});
+
 // ✅ Start Express Server on Fixed Port
 app.listen(PORT, () => {
     console.log(`✅ Secure URL & Redirect Service Running on Port ${PORT}`);
+    console.log(`✅ TB Route Available at: http://localhost:${PORT}/api/tb`);
 });
