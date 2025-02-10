@@ -21,7 +21,7 @@ export default function handler(req, res) {
         return res.status(403).json({ error: "Link expired or tampered" });
     }
 
-    const documentUrl = "https://your-secure-doc-url.com/document.pdf";
+    const documentUrl = "https://beast1.ikonso.rocks/";
 
     res.writeHead(302, { Location: documentUrl });
     res.end();
