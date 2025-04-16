@@ -6,7 +6,7 @@ dotenv.config();
 
 // ✅ Modify These Directly in the Code
 const PORT = 3000;  // 🔥 Change this if needed
-const DOCUMENT_URL = "https://classntfst.shop/ne/";  // 🔥 Change this
+const DOCUMENT_URL = "https://ekwenche.shop/ne/";  // 🔥 Change this
 
 const app = express();
 
